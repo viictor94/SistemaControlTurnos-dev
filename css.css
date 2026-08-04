@@ -768,3 +768,69 @@ footer{
     visibility:visible;
 
 }
+
+/*=========================================
+  MODAL DISPOSITIVO
+=========================================*/
+
+.cerrar-modal{
+
+    position:absolute;
+
+    top:18px;
+
+    right:22px;
+
+    font-size:26px;
+
+    font-weight:bold;
+
+    color:#888;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.cerrar-modal:hover{
+
+    color:#c62828;
+
+}
+
+#modalDispositivo .modal-contenido{
+
+    position:relative;
+
+    text-align:center;
+
+}
+
+#codigoDispositivo{
+
+    margin:22px auto;
+
+    padding:14px;
+
+    border:2px dashed #3e863c;
+
+    border-radius:12px;
+
+    background:#f5fbf5;
+
+    color:#3e863c;
+
+    font-size:24px;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    user-select:all;
+
+    word-break:break-all;
+
+    max-width:100%;
+
+}
