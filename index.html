@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="manifest.json">
+
+    <meta name="theme-color" content="#3e863c">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+    <meta name="apple-mobile-web-app-title" content="Control Horario">
+
+    <title>Version Dev - Control Horario</title>
+
+    <link rel="stylesheet" href="css.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+    <header class="topbar">
+
+    <div class="tituloSistema">
+
+        Sistema de Control Horario
+
+    </div>
+
+</header>
+
+<main class="contenedor">
+
+    <div class="card">
+
+        <img
+            src="logo.png"
+            id="logoEmpresa"
+            class="logo"
+            draggable="false"
+            alt="Logo Empresa">
+
+        <div id="hora"></div>
+
+        <div id="fecha"></div>
+
+        <div class="textoIngreso">
+
+            Ingrese su DNI
+
+        </div>
+
+        <input
+            type="text"
+            id="dni"
+            inputmode="numeric"
+            pattern="[0-9]*"
+            maxlength="9"
+            autocomplete="off"
+            spellcheck="false"
+            placeholder="Ej: 30123456">
+
+        <button id="btnMarcar">
+
+            MARCAR
+
+        </button>
+
+        <button id="btnAlmuerzo">
+
+            ALMUERZO
+
+        </button>
+
+    </div>
+
+</main>
+
+<footer>
+
+    <span id="control">
+
+        Centro de Control
+
+    </span>
+
+</footer>
+    
+    <div id="overlayNotificacion"></div>
+
+    <div id="overlayCarga">
+
+        <div class="iconoCarga">
+            <i class="fa-regular fa-clock"></i>
+        </div>
+
+        <div class="textoCarga">
+            Procesando...
+        </div>
+
+    </div>
+
+    <div id="modalJustificacion" class="modal">
+
+        <div class="modal-contenido">
+
+            <h2>Justificación requerida</h2>
+
+            <p>
+                El ingreso fue registrado como
+                <b>Fuera de Jornada</b>.
+            </p>
+
+            <textarea
+                id="txtJustificacion"
+                maxlength="150"
+                placeholder="Explique brevemente el motivo...">
+            </textarea>
+
+            <div id="contadorJustificacion">0 / 150</div>
+
+            <div class="modal-botones">
+
+                <button
+                    id="btnCancelarJustificacion"
+                    class="btn-secundario">
+
+                    Cancelar
+
+                </button>
+
+                <button
+                    id="btnGuardarJustificacion">
+
+                    Guardar
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="notificacion">
+
+        <div id="iconoMensaje"></div>
+
+        <div id="textoMensaje"></div>
+
+    </div>
+    
+<script>
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+        navigator.serviceWorker.register("./sw.js");
+    });
+}
+</script>
+<script src="js.js"></script>
+    
+</body>
+</html>
