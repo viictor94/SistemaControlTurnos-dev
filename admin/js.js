@@ -7,7 +7,7 @@ window.addEventListener("load", cargarDashboard);
 function cargarDashboard(){
 
     fetch(
-        "TU_URL_DEL_APPS_SCRIPT"
+        "https://script.google.com/macros/s/AKfycbxCdDy-UJ5gG8ghlZHnhARXumSJPibwnW8ELfU9u8a45BNl33YIy-6GPvHvhZGiqXgn/exec"
         + "?accion=dashboard"
     )
 
