@@ -1,1 +1,147 @@
+/*=========================================
+  RESET
+=========================================*/
 
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:"Inter",sans-serif;
+
+    background:#f4f6f9;
+
+    color:#2d3436;
+
+}
+
+/*=========================================
+  LAYOUT
+=========================================*/
+
+.layout{
+
+    display:flex;
+
+    min-height:100vh;
+
+}
+
+/*=========================================
+  SIDEBAR
+=========================================*/
+
+.sidebar{
+
+    width:260px;
+
+    background:#ffffff;
+
+    border-right:1px solid #e5e7eb;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.logo{
+
+    height:80px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    padding:0 24px;
+
+    border-bottom:1px solid #e5e7eb;
+
+}
+
+.logo img{
+
+    width:42px;
+
+    height:42px;
+
+    object-fit:contain;
+
+}
+
+.logo h2{
+
+    font-size:22px;
+
+    font-weight:700;
+
+    color:#3e863c;
+
+}
+
+.sidebar nav{
+
+    display:flex;
+
+    flex-direction:column;
+
+    padding:18px 12px;
+
+    gap:4px;
+
+}
+
+.sidebar nav a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    text-decoration:none;
+
+    color:#4b5563;
+
+    padding:14px 16px;
+
+    border-radius:10px;
+
+    font-size:15px;
+
+    font-weight:500;
+
+    transition:.2s;
+
+}
+
+.sidebar nav a i{
+
+    width:20px;
+
+    text-align:center;
+
+    font-size:16px;
+
+}
+
+.sidebar nav a:hover{
+
+    background:#f3f4f6;
+
+    color:#3e863c;
+
+}
+
+.sidebar nav a.activo{
+
+    background:#3e863c;
+
+    color:#ffffff;
+
+}
