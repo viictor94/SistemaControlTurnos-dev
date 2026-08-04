@@ -238,6 +238,26 @@ input::placeholder{
 
 }
 
+.atajo{
+
+    margin-left:8px;
+
+    padding:2px 7px;
+
+    border-radius:6px;
+
+    background:#ffffff;
+
+    border:1px solid #9bc79a;
+
+    color:#3e863c;
+
+    font-size:12px;
+
+    font-weight:700;
+
+}
+
 /******************************************************
  NOTIFICACIONES
 ******************************************************/
