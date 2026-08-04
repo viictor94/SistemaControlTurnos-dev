@@ -9,43 +9,28 @@
 }
 
 body{
-
     font-family:"Inter",sans-serif;
-
     background:#f8fafc;
-
     color:#334155;
-
 }
 
 /*=========================================
   LAYOUT
 =========================================*/
-
 .layout{
-
     display:flex;
-
     min-height:100vh;
-
 }
 
 /*=========================================
   SIDEBAR
-=========================================*/
-
+========================================*/
 .sidebar{
-
     width:280px;
-
     background:#ffffff;
-
     border-right:1px solid #e5e7eb;
-
     display:flex;
-
     flex-direction:column;
-
 }
 
 .logo{
@@ -66,69 +51,41 @@ body{
 }
 
 .sidebar nav{
-
     display:flex;
-
     flex-direction:column;
-
     gap:6px;
-
     padding:20px 14px;
-
 }
 
 .sidebar nav a{
-
     display:flex;
-
     align-items:center;
-
     gap:14px;
-
     text-decoration:none;
-
     color:#475569;
-
     padding:14px 18px;
-
     border-radius:10px;
-
     font-size:15px;
-
     font-weight:500;
-
     transition:.18s;
-
 }
 
 .sidebar nav a i{
-
     width:20px;
-
     text-align:center;
-
     font-size:15px;
-
 }
 
 .sidebar nav a:hover{
-
     background:#f1f5f9;
-
     color:#3e863c;
-
 }
 
 .sidebar nav a.activo{
-
     background:#eef8ef;
-
     color:#3e863c;
-
     border-left:4px solid #3e863c;
-
     padding-left:14px;
-
 }
 
 /*=========================================
@@ -136,13 +93,9 @@ body{
 =========================================*/
 
 .contenido{
-
     flex:1;
-
     display:flex;
-
     flex-direction:column;
-
 }
 
 /*=========================================
@@ -150,227 +103,180 @@ body{
 =========================================*/
 
 .topbar{
-
     height:80px;
-
     background:#ffffff;
-
     border-bottom:1px solid #e5e7eb;
-
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
     padding:0 36px;
-
 }
 
 .topbar h1{
-
     font-size:34px;
-
     font-weight:700;
-
     color:#1e293b;
-
 }
 
 .topbar span{
-
     display:block;
-
     margin-top:4px;
-
     font-size:14px;
-
     color:#3e863c;
-
 }
 
 .usuario{
-
     display:flex;
-
     align-items:center;
-
     gap:10px;
-
     font-size:15px;
-
     font-weight:500;
-
     color:#475569;
-
 }
 
 .usuario i{
-
     font-size:22px;
-
     color:#3e863c;
-
 }
 
 /*=========================================
   DASHBOARD
 =========================================*/
-
 #dashboard{
-
     padding:36px;
-
 }
 
 .dashboard-grid{
-
     display:grid;
-
     grid-template-columns:repeat(4,1fr);
-
     gap:24px;
-
 }
 
 .kpi-card{
-
     background:#ffffff;
-
     border-radius:14px;
-
     padding:24px;
-
     box-shadow:0 2px 10px rgba(0,0,0,.05);
-
     border-top:6px solid #ddd;
-
     transition:.2s;
-
 }
 
 .kpi-card:hover{
-
     transform:translateY(-2px);
-
     box-shadow:0 8px 18px rgba(0,0,0,.08);
-
 }
 
 .kpi-titulo{
-
     display:block;
-
     font-size:15px;
-
     color:#64748b;
-
     margin-bottom:18px;
-
     font-weight:500;
-
 }
 
 .kpi-numero{
-
-    display:block;
-
+   display:block;
     font-size:42px;
-
     font-weight:700;
-
     color:#1e293b;
-
 }
 
 /*=========================================
   COLORES KPI
 =========================================*/
-
 .kpi-presentes{
-
     border-top-color:#3e863c;
-
 }
-
 .kpi-almuerzo{
-
     border-top-color:#2563eb;
-
 }
-
 .kpi-incidencias{
-
     border-top-color:#f59e0b;
-
 }
 
 .kpi-ausentes{
-
     border-top-color:#dc2626;
-
 }
 
 /*=========================================
   PANELES DASHBOARD
 =========================================*/
-
 .paneles-dashboard{
-
     display:grid;
-
     grid-template-columns:1fr 1fr;
-
     gap:24px;
-
     margin-top:28px;
-
 }
 
 .panel{
-
     background:#ffffff;
-
     border-radius:14px;
-
     padding:24px;
-
     box-shadow:0 2px 10px rgba(0,0,0,.05);
-
     min-height:520px;
-
 }
 
 .panel-header{
-
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
     margin-bottom:20px;
-
     padding-bottom:14px;
-
     border-bottom:1px solid #e5e7eb;
-
 }
 
 .panel-header h2{
-
     font-size:19px;
-
     font-weight:600;
-
     color:#1e293b;
-
 }
 
 .panel-header span{
-
     font-size:14px;
-
     color:#64748b;
+}
 
+/*=========================================
+  INCIDENCIAS
+=========================================*/
+
+.sin-datos{
+    text-align:center;
+    color:#94a3b8;
+    padding:50px 20px;
+    font-size:15px;
+}
+
+.tituloSucursal{
+    font-size:18px;
+    font-weight:700;
+    color:#3e863c;
+    margin-top:20px;
+    margin-bottom:12px;
+    padding-bottom:8px;
+    border-bottom:2px solid #eef2f7;
+}
+
+.incidencia{
+    padding:14px 0;
+    border-bottom:1px solid #edf2f7;
+}
+
+.empleado{
+    font-weight:600;
+    color:#1e293b;
+}
+
+.tipo{
+    margin-top:4px;
+    color:#f59e0b;
+    font-size:14px;
+    font-weight:600;
+}
+
+.observacion{
+    margin-top:6px;
+    color:#64748b;
+    font-size:14px;
+    line-height:1.5;
 }
