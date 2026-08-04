@@ -135,6 +135,13 @@ document
 document
     .getElementById("btnCancelarJustificacion")
     .addEventListener("click", cancelarJustificacion);
+document
+    .getElementById("btnCerrarDispositivo")
+    .addEventListener("click", cerrarModalDispositivo);
+
+document
+    .getElementById("cerrarModalDispositivo")
+    .addEventListener("click", cerrarModalDispositivo);
 
     /*=========================================
   MENSAJES
@@ -331,6 +338,27 @@ function cerrarModalJustificacion(){
 
 }
 
+function abrirModalDispositivo(id){
+
+    document.getElementById("codigoDispositivo").innerHTML = id;
+
+    document
+        .getElementById("modalDispositivo")
+        .classList.add("mostrar");
+
+}
+
+function cerrarModalDispositivo(){
+
+    document
+        .getElementById("modalDispositivo")
+        .classList.remove("mostrar");
+
+    document.getElementById("dni").select();
+    document.getElementById("dni").focus();
+
+}
+
 function cancelarJustificacion(){
 
     cerrarModalJustificacion();
@@ -406,6 +434,14 @@ if (respuesta.requiereJustificacion) {
 
 }
 
+    if (respuesta.equipoNoAutorizado) {
+
+    abrirModalDispositivo(respuesta.dispositivo);
+
+    return;
+
+}
+    
     if(!respuesta.ok){
 
         document.getElementById("dni").select();
