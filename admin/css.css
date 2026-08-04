@@ -280,3 +280,35 @@ body{
     font-size:14px;
     line-height:1.5;
 }
+
+/*=========================================
+  ÚLTIMAS MARCACIONES
+=========================================*/
+.marcacion{
+    padding:16px 0;
+    border-bottom:1px solid #edf2f7;
+}
+.marcacion:last-child{
+    border-bottom:none;
+}
+.marcacion-hora{
+    font-size:15px;
+    font-weight:700;
+    color:#3e863c;
+    margin-bottom:6px;
+}
+.marcacion-empleado{
+    font-size:16px;
+    font-weight:600;
+    color:#1e293b;
+}
+.marcacion-evento{
+    margin-top:6px;
+    font-size:14px;
+    color:#2563eb;
+}
+.marcacion-sucursal{
+    margin-top:4px;
+    font-size:13px;
+    color:#64748b;
+}
