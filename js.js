@@ -58,14 +58,43 @@ setInterval(actualizarHora,1000);
 
 const dni = document.getElementById("dni");
 let dniPendiente = "";
+
+const DEVICE_KEY = "PTH_DEVICE_ID";
+
+function obtenerIdDispositivo() {
+
+    let id = localStorage.getItem(DEVICE_KEY);
+
+    if (!id) {
+
+        id =
+            "PTH-" +
+            crypto.randomUUID()
+                .replace(/-/g, "")
+                .substring(0, 12)
+                .toUpperCase();
+
+        localStorage.setItem(DEVICE_KEY, id);
+
+    }
+
+    return id;
+
+}
+
+// Genera (o recupera) el ID apenas inicia la aplicación
+obtenerIdDispositivo();
+
 window.onload = function(){
+
     dni.focus();
+
     mostrarMensaje(
         "ok",
         "Sistema listo para registrar marcaciones."
     );
-};
 
+};
 /*=========================================
   EVENTOS
 =========================================*/
@@ -190,6 +219,7 @@ function validarEmpleado(){
     "https://script.google.com/macros/s/AKfycbxCdDy-UJ5gG8ghlZHnhARXumSJPibwnW8ELfU9u8a45BNl33YIy-6GPvHvhZGiqXgn/exec"
     + "?accion=registrarMarcacion"
     + "&dni=" + encodeURIComponent(dniIngresado)
+    + "&dispositivo=" + encodeURIComponent(obtenerIdDispositivo())
 )
 
 .then(response => response.json())
@@ -234,6 +264,7 @@ fetch(
     "https://script.google.com/macros/s/AKfycbxCdDy-UJ5gG8ghlZHnhARXumSJPibwnW8ELfU9u8a45BNl33YIy-6GPvHvhZGiqXgn/exec"
     + "?accion=registrarAlmuerzo"
     + "&dni=" + encodeURIComponent(dniIngresado)
+    + "&dispositivo=" + encodeURIComponent(obtenerIdDispositivo())
 )
 
 .then(response => response.json())
@@ -337,6 +368,7 @@ fetch(
     + "?accion=registrarMarcacion"
     + "&dni=" + encodeURIComponent(dniPendiente)
     + "&motivo=" + encodeURIComponent(motivo)
+    + "&dispositivo=" + encodeURIComponent(obtenerIdDispositivo())
 )
 
 .then(response => response.json())
