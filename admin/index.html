@@ -1,12 +1,109 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
-    <title>Centro de Control</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro de Control | Panther</title>
+    <link rel="stylesheet" href="css.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 </head>
 <body>
+<div class="layout">
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="../logo.png">
+            <h2>Panther</h2>
+        </div>
+        <nav>
+            <a href="#" class="activo">
+                <i class="fa-solid fa-house"></i>
+                Dashboard
+            </a>
+            
+            <a href="#">
+                <i class="fa-solid fa-users"></i>
+                Empleados
+            </a>
 
-<h1>Centro de Control</h1>
+            <a href="#">
+                <i class="fa-solid fa-clock"></i>
+                Marcaciones
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                Incidencias
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-computer"></i>
+                Dispositivos
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-building"></i>
+                Sucursales
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-business-time"></i>
+                Turnos
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-chart-column"></i>
+                Reportes
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-gear"></i>
+                Configuración
+            </a>
+
+        </nav>
+
+    </aside>
+
+    <main class="contenido">
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>Dashboard</h1>
+
+                <span>
+                    Centro de Control
+                </span>
+
+            </div>
+
+            <div class="usuario">
+
+                <i class="fa-solid fa-user-circle"></i>
+
+                Administrador
+
+            </div>
+
+        </header>
+
+        <section id="dashboard">
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="js.js"></script>
 
 </body>
+
 </html>
