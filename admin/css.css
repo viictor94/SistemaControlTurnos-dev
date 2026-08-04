@@ -12,9 +12,9 @@ body{
 
     font-family:"Inter",sans-serif;
 
-    background:#f4f6f9;
+    background:#f8fafc;
 
-    color:#2d3436;
+    color:#334155;
 
 }
 
@@ -36,7 +36,7 @@ body{
 
 .sidebar{
 
-    width:260px;
+    width:280px;
 
     background:#ffffff;
 
@@ -50,15 +50,13 @@ body{
 
 .logo{
 
-    height:80px;
+    height:90px;
 
     display:flex;
 
+    justify-content:center;
+
     align-items:center;
-
-    gap:14px;
-
-    padding:0 24px;
 
     border-bottom:1px solid #e5e7eb;
 
@@ -66,21 +64,11 @@ body{
 
 .logo img{
 
-    width:42px;
+    width:64px;
 
-    height:42px;
+    height:64px;
 
     object-fit:contain;
-
-}
-
-.logo h2{
-
-    font-size:22px;
-
-    font-weight:700;
-
-    color:#3e863c;
 
 }
 
@@ -90,9 +78,9 @@ body{
 
     flex-direction:column;
 
-    padding:18px 12px;
+    gap:6px;
 
-    gap:4px;
+    padding:20px 14px;
 
 }
 
@@ -106,9 +94,9 @@ body{
 
     text-decoration:none;
 
-    color:#4b5563;
+    color:#475569;
 
-    padding:14px 16px;
+    padding:14px 18px;
 
     border-radius:10px;
 
@@ -116,7 +104,7 @@ body{
 
     font-weight:500;
 
-    transition:.2s;
+    transition:.18s;
 
 }
 
@@ -126,13 +114,13 @@ body{
 
     text-align:center;
 
-    font-size:16px;
+    font-size:15px;
 
 }
 
 .sidebar nav a:hover{
 
-    background:#f3f4f6;
+    background:#f1f5f9;
 
     color:#3e863c;
 
@@ -140,8 +128,108 @@ body{
 
 .sidebar nav a.activo{
 
-    background:#3e863c;
+    background:#eef8ef;
 
-    color:#ffffff;
+    color:#3e863c;
+
+    border-left:4px solid #3e863c;
+
+    padding-left:14px;
+
+}
+
+/*=========================================
+  CONTENIDO
+=========================================*/
+
+.contenido{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+/*=========================================
+  TOPBAR
+=========================================*/
+
+.topbar{
+
+    height:82px;
+
+    background:#ffffff;
+
+    border-bottom:1px solid #e5e7eb;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 36px;
+
+}
+
+.topbar h1{
+
+    font-size:34px;
+
+    font-weight:700;
+
+    color:#1e293b;
+
+}
+
+.topbar span{
+
+    display:block;
+
+    margin-top:4px;
+
+    font-size:14px;
+
+    color:#64748b;
+
+}
+
+.usuario{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:15px;
+
+    font-weight:500;
+
+    color:#475569;
+
+}
+
+.usuario i{
+
+    font-size:22px;
+
+    color:#3e863c;
+
+}
+
+/*=========================================
+  DASHBOARD
+=========================================*/
+
+#dashboard{
+
+    flex:1;
+
+    padding:36px;
+
+    max-width:1600px;
 
 }
