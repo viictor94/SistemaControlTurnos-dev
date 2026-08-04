@@ -49,7 +49,7 @@ body{
 }
 
 .logo{
-    height:250px;
+    height:80px;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -151,7 +151,7 @@ body{
 
 .topbar{
 
-    height:82px;
+    height:80px;
 
     background:#ffffff;
 
@@ -185,7 +185,7 @@ body{
 
     font-size:14px;
 
-    color:#64748b;
+    color:#3e863c;
 
 }
 
