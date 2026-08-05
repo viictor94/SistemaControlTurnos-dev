@@ -451,3 +451,50 @@ body{
     font-size:18px;
 }
 
+/*=========================================
+  OVERLAY DE CARGA
+=========================================*/
+.overlay-carga{
+    position:fixed;
+    inset:0;
+    background:rgba(255,255,255,.75);
+    backdrop-filter:blur(2px);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    opacity:0;
+    visibility:hidden;
+    transition:.2s;
+    z-index:99999;
+}
+
+.overlay-carga.mostrar{
+    opacity:1;
+    visibility:visible;
+}
+.cargando{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:18px;
+   background:#fff;
+    padding:35px 45px;
+    border-radius:14px;
+    box-shadow:0 12px 35px rgba(0,0,0,.18);
+    font-size:18px;
+    font-weight:600;
+}
+
+.cargando i{
+    font-size:40px;
+    color:#2e7d32;
+    animation:girar .8s linear infinite;
+}
+@keyframes girar{
+    from{
+       transform:rotate(0deg);
+   }
+    to{
+       transform:rotate(360deg);
+   }
+}
