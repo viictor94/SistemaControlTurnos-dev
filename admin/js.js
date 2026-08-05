@@ -237,7 +237,7 @@ function mostrarDashboard(e){
 
 let listaEmpleados = [];
 function cargarEmpleados(){
-    fetch("https://script.google.com/macros/s/AKfycbxCdDy-UJ5gG8ghlZHnhARXumSJPibwnW8ELfU9u8a45BNl33YIy-6GPvHvhZGiqXgn/exec?accion=dashboard")
+    fetch("https://script.google.com/macros/s/AKfycbxCdDy-UJ5gG8ghlZHnhARXumSJPibwnW8ELfU9u8a45BNl33YIy-6GPvHvhZGiqXgn/exec?accion=empleados")
     .then(r => r.json())
     .then(function(empleados){listaEmpleados = empleados;
         const tabla =
