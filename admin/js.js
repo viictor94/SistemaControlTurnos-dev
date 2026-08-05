@@ -206,6 +206,8 @@ function mostrarEmpleados(e){
     document
         .getElementById("menuEmpleados")
         .classList.add("activo");
+    if(listaEmpleados.length == 0){
+        cargarEmpleados();
 }
 
 document
@@ -232,3 +234,33 @@ function mostrarDashboard(e){
         .getElementById("menuEmpleados")
         .classList.remove("activo");
   }
+
+let listaEmpleados = [];
+function cargarEmpleados(){
+    fetch("https://script.google.com/macros/s/AKfycbxCdDy-UJ5gG8ghlZHnhARXumSJPibwnW8ELfU9u8a45BNl33YIy-6GPvHvhZGiqXgn/exec?accion=dashboard")
+    .then(r => r.json())
+    .then(function(empleados){listaEmpleados = empleados;
+        const tabla =
+           document.getElementById("tablaEmpleados");
+        tabla.innerHTML = "";
+        listaEmpleados.forEach(function(e){
+            tabla.innerHTML += `
+                <tr>
+                    <td>${e.legajo}</td>
+                    <td>${e.dni}</td>
+                    <td>${e.apellido}</td>
+                    <td>${e.nombre}</td>
+                    <td>${e.sucursal}</td>
+                    <td>${e.turno}</td>
+                    <td>${e.estado}</td>
+                    <td>
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </td>
+                </tr>
+            `;
+        });
+    })
+    .catch(function(error){
+        console.error(error);
+    });
+}
