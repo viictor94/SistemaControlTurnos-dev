@@ -208,6 +208,7 @@ function mostrarEmpleados(e){
         .classList.add("activo");
     if(listaEmpleados.length == 0){
         cargarEmpleados();
+  }
 }
 
 document
