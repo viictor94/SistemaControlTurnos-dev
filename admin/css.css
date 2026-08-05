@@ -234,6 +234,7 @@ body{
 }
 
 .panel-header h2{
+    text-align:center;
     font-size:19px;
     font-weight:600;
     color:#1e293b;
