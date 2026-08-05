@@ -400,3 +400,46 @@ body{
 .notificacion i{
     font-size:18px;
 }
+
+/*=========================================
+  SIDEBAR FOOTER
+=========================================*/
+.sidebar{
+    display:flex;
+    flex-direction:column;
+}
+
+.sidebar nav{
+    flex:1;
+}
+.sidebar-footer{
+    padding:20px;
+    border-top:1px solid #e5e5e5;
+}
+.ultima-actualizacion{
+    display:block;
+    font-size:12px;
+    color:#888;
+    margin-bottom:6px;
+}
+#horaActualizacion{
+    display:block;
+    font-size:18px;
+    font-weight:600;
+    color:#2e7d32;
+    margin-bottom:15px;
+}
+#btnActualizarDashboard{
+    width:100%;
+    border:none;
+    background:#2e7d32;
+    color:#fff;
+    padding:12px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:600;
+    transition:.2s;
+}
+#btnActualizarDashboard:hover{
+   background:#256728;
+}
