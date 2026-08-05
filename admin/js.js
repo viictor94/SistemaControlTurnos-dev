@@ -172,15 +172,30 @@ function actualizarHora(){
             }
         );
 }
-
 document
     .getElementById("overlayCarga")
     .classList
     .remove("mostrar");
-
 document
     .getElementById("btnActualizarDashboard")
     .addEventListener(
         "click",
         cargarDashboard
     );
+document
+    .getElementById("menuEmpleados")
+    .addEventListener(
+        "click",
+        mostrarEmpleados
+    );
+
+function mostrarEmpleados(e){
+    e.preventDefault();
+    document
+        .getElementById("dashboard")
+        .style.display = "none";
+    document
+        .getElementById("empleados")
+        .style.display = "block";
+
+}
