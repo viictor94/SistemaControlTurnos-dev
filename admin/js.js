@@ -3,28 +3,31 @@
 =========================================*/
 window.addEventListener("load", cargarDashboard);
 function cargarDashboard(){
-  document
-    .getElementById("overlayCarga")
-    .classList
-    .add("mostrar");
-    fetch(
-        "https://script.google.com/macros/s/AKfycbxCdDy-UJ5gG8ghlZHnhARXumSJPibwnW8ELfU9u8a45BNl33YIy-6GPvHvhZGiqXgn/exec"
-        + "?accion=dashboard")
-    .then(r => r.json())
-   .then(function(datos){
-    cargarKPIs(datos);
-    cargarIncidencias(datos.listaIncidencias);
-    cargarUltimasMarcaciones(datos.ultimasMarcaciones);
-    cargarResumen(datos.resumen);
-    actualizarHora();
-})
-  .catch(function(error){
     document
         .getElementById("overlayCarga")
         .classList
-        .remove("mostrar");
-    console.error(error);
-  });
+        .add("mostrar");
+    const inicio = performance.now();
+    fetch(
+        "https://script.google.com/macros/s/AKfycbxCdDy-UJ5gG8ghlZHnhARXumSJPibwnW8ELfU9u8a45BNl33YIy-6GPvHvhZGiqXgn/exec?accion=dashboard"
+    )
+    .then(r => r.json())
+    .then(function(datos){
+        cargarKPIs(datos);
+        cargarIncidencias(datos.listaIncidencias);
+        cargarUltimasMarcaciones(datos.ultimasMarcaciones);
+        cargarResumen(datos.resumen);
+        actualizarHora();
+    })
+    .catch(function(error){
+        console.error(error);
+    })
+    .finally(function(){
+        document
+            .getElementById("overlayCarga")
+            .classList
+            .remove("mostrar");
+    });
 }
 
 function cargarKPIs(datos){
