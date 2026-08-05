@@ -1,7 +1,10 @@
 /*=========================================
   DASHBOARD
 =========================================*/
-window.addEventListener("load", cargarDashboard);
+window.addEventListener("load", function(){
+    mostrarDashboard();
+});
+
 function cargarDashboard(){
     document
         .getElementById("overlayCarga")
@@ -197,5 +200,36 @@ function mostrarEmpleados(e){
     document
         .getElementById("empleados")
         .style.display = "block";
+    document
+        .getElementById("menuDashboard")
+        .classList.remove("activo");
+    document
+        .getElementById("menuEmpleados")
+        .classList.add("activo");
+}
 
+document
+    .getElementById("menuDashboard")
+    .addEventListener(
+        "click",
+        mostrarDashboard
+    );
+
+function mostrarDashboard(e){
+    if(e){
+        e.preventDefault();
+    }
+    document
+        .getElementById("dashboard")
+        .style.display = "block";
+    document
+        .getElementById("empleados")
+        .style.display = "none";
+    document
+        .getElementById("menuDashboard")
+        .classList.add("activo");
+    document
+        .getElementById("menuEmpleados")
+        .classList.remove("activo");
+    cargarDashboard();
 }
