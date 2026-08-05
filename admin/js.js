@@ -120,3 +120,20 @@ function copiarResumen(){
             alert("Resumen copiado al portapapeles.");
         });
 }
+
+function mostrarNotificacion(tipo, mensaje){
+    const notificacion = document.getElementById("notificacion");
+    const icono = document.getElementById("notificacionIcono");
+    const texto = document.getElementById("notificacionTexto");
+    notificacion.className = "notificacion " + tipo;
+    if(tipo == "ok"){
+        icono.className = "fa-solid fa-circle-check";
+    }else{
+        icono.className = "fa-solid fa-circle-xmark";
+    }
+    texto.textContent = mensaje;
+    notificacion.classList.add("mostrar");
+    setTimeout(function(){
+        notificacion.classList.remove("mostrar");
+    },3000);
+}
