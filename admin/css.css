@@ -216,6 +216,14 @@ body{
     min-height:520px;
 }
 
+#listaIncidencias,
+#listaMarcaciones{
+    max-height:440px;
+    overflow-y:auto;
+    padding-right:6px;
+
+}
+
 .panel-header{
     display:flex;
     justify-content:space-between;
