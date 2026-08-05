@@ -320,3 +320,44 @@ body{
     font-size:13px;
     color:#64748b;
 }
+
+/*=========================================
+  RESUMEN DEL DÍA
+=========================================*/
+.panel-resumen{
+    margin-top:24px;
+}
+
+#textoResumen{
+    margin:0;
+    padding:20px;
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    border-radius:12px;
+    font-family:Consolas, monospace;
+    font-size:14px;
+    line-height:1.6;
+    white-space:pre-wrap;
+    max-height:420px;
+    overflow-y:auto;
+}
+
+.btn-copiar{
+    border:none;
+    background:#3e863c;
+    color:#fff;
+    padding:10px 18px;
+    border-radius:8px;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.btn-copiar:hover{
+    background:#2f6c2e;
+}
+
+.btn-copiar i{
+    margin-right:6px;
+}
