@@ -1,7 +1,6 @@
 /*=========================================
   DASHBOARD
 =========================================*/
-
 window.addEventListener("load", cargarDashboard);
 function cargarDashboard(){
     fetch(
@@ -12,6 +11,7 @@ function cargarDashboard(){
     cargarKPIs(datos);
     cargarIncidencias(datos.listaIncidencias);
     cargarUltimasMarcaciones(datos.ultimasMarcaciones);
+    cargarResumen(datos.resumen);
 })
     .catch(function(error){
         console.error(error);
@@ -98,4 +98,24 @@ function cargarUltimasMarcaciones(lista){
             </div>
         `;
     });
+}
+
+function cargarResumen(texto){
+    document
+        .getElementById("textoResumen")
+        .textContent = texto;
+}
+
+
+document
+    .getElementById("btnCopiarResumen")
+    .addEventListener("click", copiarResumen);
+function copiarResumen(){
+    const texto =
+        document.getElementById("textoResumen").textContent;
+    navigator.clipboard
+        .writeText(texto)
+        .then(function(){
+            alert("Resumen copiado al portapapeles.");
+        });
 }
