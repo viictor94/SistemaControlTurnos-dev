@@ -2,7 +2,7 @@
   DASHBOARD
 =========================================*/
 window.addEventListener("load", function(){
-    mostrarDashboard();
+    cargarDashboard();
 });
 
 function cargarDashboard(){
@@ -231,5 +231,4 @@ function mostrarDashboard(e){
     document
         .getElementById("menuEmpleados")
         .classList.remove("activo");
-    cargarDashboard();
-}
+  }
