@@ -3,6 +3,10 @@
 =========================================*/
 window.addEventListener("load", cargarDashboard);
 function cargarDashboard(){
+  document
+    .getElementById("overlayCarga")
+    .classList
+    .add("mostrar");
     fetch(
         "https://script.google.com/macros/s/AKfycbxCdDy-UJ5gG8ghlZHnhARXumSJPibwnW8ELfU9u8a45BNl33YIy-6GPvHvhZGiqXgn/exec"
         + "?accion=dashboard")
@@ -14,9 +18,13 @@ function cargarDashboard(){
     cargarResumen(datos.resumen);
     actualizarHora();
 })
-    .catch(function(error){
-        console.error(error);
-    });
+  .catch(function(error){
+    document
+        .getElementById("overlayCarga")
+        .classList
+        .remove("mostrar");
+    console.error(error);
+  });
 }
 
 function cargarKPIs(datos){
@@ -161,6 +169,11 @@ function actualizarHora(){
             }
         );
 }
+
+document
+    .getElementById("overlayCarga")
+    .classList
+    .remove("mostrar");
 
 document
     .getElementById("btnActualizarDashboard")
