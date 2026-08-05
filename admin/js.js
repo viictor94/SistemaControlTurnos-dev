@@ -252,8 +252,9 @@ function cargarEmpleados(){
                     <td>${e.apellido}</td>
                     <td>${e.nombre}</td>
                     <td>${e.sucursal}</td>
-                    <td>${e.turno}</td>
+                    <td>${e.urno}</td>
                     <td>${e.estado}</td>
+                    <td>${e.sucursal}</td>
                     <td>
                         <i class="fa-solid fa-pen-to-square"></i>
                     </td>
