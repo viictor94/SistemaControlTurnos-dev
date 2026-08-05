@@ -105,19 +105,27 @@ function cargarResumen(texto){
         .getElementById("textoResumen")
         .textContent = texto;
 }
-
-
 document
     .getElementById("btnCopiarResumen")
     .addEventListener("click", copiarResumen);
 
 function copiarResumen(){
-    const texto =
-        document.getElementById("textoResumen").textContent;
+    const texto = document
+        .getElementById("textoResumen")
+        .textContent;
     navigator.clipboard
         .writeText(texto)
         .then(function(){
-            alert("Resumen copiado al portapapeles.");
+            mostrarNotificacion(
+                "ok",
+                "Resumen diario copiado."
+            );
+        })
+        .catch(function(){
+            mostrarNotificacion(
+                "error",
+                "No fue posible copiar el resumen."
+            );
         });
 }
 
