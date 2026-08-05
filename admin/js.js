@@ -110,6 +110,7 @@ function cargarResumen(texto){
 document
     .getElementById("btnCopiarResumen")
     .addEventListener("click", copiarResumen);
+
 function copiarResumen(){
     const texto =
         document.getElementById("textoResumen").textContent;
