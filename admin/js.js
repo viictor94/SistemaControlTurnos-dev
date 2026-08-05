@@ -12,6 +12,7 @@ function cargarDashboard(){
     cargarIncidencias(datos.listaIncidencias);
     cargarUltimasMarcaciones(datos.ultimasMarcaciones);
     cargarResumen(datos.resumen);
+    actualizarHora();
 })
     .catch(function(error){
         console.error(error);
@@ -145,3 +146,25 @@ function mostrarNotificacion(tipo, mensaje){
         notificacion.classList.remove("mostrar");
     },3000);
 }
+
+function actualizarHora(){
+    const ahora = new Date();
+    document.getElementById("horaActualizacion")
+        .textContent =
+        ahora.toLocaleTimeString(
+            "es-AR",
+            {
+                hour:"2-digit",
+                minute:"2-digit",
+                second:"2-digit",
+                hour12: false
+            }
+        );
+}
+
+document
+    .getElementById("btnActualizarDashboard")
+    .addEventListener(
+        "click",
+        cargarDashboard
+    );
