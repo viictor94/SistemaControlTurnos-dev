@@ -1,5 +1,5 @@
 /*=========================================
-  DASHBOARD
+  DASHBOARDD
 =========================================*/
 window.addEventListener("load", function(){
     cargarDashboard();
