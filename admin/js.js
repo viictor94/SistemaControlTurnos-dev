@@ -240,29 +240,59 @@ let listaEmpleados = [];
 function cargarEmpleados(){
     fetch("https://script.google.com/macros/s/AKfycbxCdDy-UJ5gG8ghlZHnhARXumSJPibwnW8ELfU9u8a45BNl33YIy-6GPvHvhZGiqXgn/exec?accion=empleados")
     .then(r => r.json())
-    .then(function(empleados){listaEmpleados = empleados;
-        const tabla =
-           document.getElementById("tablaEmpleados");
-        tabla.innerHTML = "";
-        listaEmpleados.forEach(function(e){
-            tabla.innerHTML += `
-                <tr>
-                    <td>${e.legajo}</td>
-                    <td>${e.dni}</td>
-                    <td>${e.apellido}</td>
-                    <td>${e.nombre}</td>
-                    <td>${e.sucursal}</td>
-                    <td>${e.urno}</td>
-                    <td>${e.estado}</td>
-                    <td>${e.sucursal}</td>
-                    <td>
-                        <i class="fa-solid fa-pen-to-square"></i>
-                    </td>
-                </tr>
-            `;
-        });
+    .then(function(empleados){
+        listaEmpleados = empleados;
+        renderizarEmpleados(listaEmpleados);
     })
     .catch(function(error){
         console.error(error);
     });
+}
+
+
+function renderizarEmpleados(lista){
+    const tabla =
+        document.getElementById("tablaEmpleados");
+    tabla.innerHTML = "";
+    lista.forEach(function(e){
+        tabla.innerHTML += `
+            <tr>
+                <td>${e.legajo}</td>
+                <td>${e.dni}</td>
+                <td>${e.apellido}</td>
+                <td>${e.nombre}</td>
+                <td>${e.sucursal}</td>
+                <td>${e.turno}</td>
+                <td>${e.estado}</td>
+                <td>
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </td>
+            </tr>
+        `;
+    });
+}
+
+document
+    .getElementById("buscarEmpleado")
+    .addEventListener(
+        "input",
+        filtrarEmpleados
+    );
+function filtrarEmpleados(){
+    const texto = this.value
+        .trim()
+        .toLowerCase();
+    if(texto == ""){
+        renderizarEmpleados(listaEmpleados);
+        return;
+    }
+    const resultado = listaEmpleados.filter(function(e){
+        return (
+            String(e.legajo).includes(texto) ||
+            e.dni.includes(texto) ||
+            e.apellido.toLowerCase().includes(texto) ||
+            e.nombre.toLowerCase().includes(texto)
+        );
+    });
+    renderizarEmpleados(resultado);
 }
