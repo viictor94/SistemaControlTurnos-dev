@@ -375,7 +375,41 @@ function guardarEmpleado(){
         alert("Complete los datos obligatorios.");
         return;
     }
-    console.log("Guardar empleado");
+    const empleado = {
+        accion:
+           modoEmpleado == "nuevo"
+           ? "guardarEmpleado"
+           : "actualizarEmpleado",
+        legajo:
+            document.getElementById("txtLegajo").value,
+        dni:
+            document.getElementById("txtDni").value,
+        apellido:
+            document.getElementById("txtApellido").value,
+        nombre:
+            document.getElementById("txtNombre").value,
+        sucursal:
+            document.getElementById("txtSucursal").value,
+        turno:
+            document.getElementById("txtTurno").value,
+        estado:
+            document.getElementById("txtEstado").value
+    };
+
+   fetch("https://script.google.com/macros/s/AKfycbxCdDy-UJ5gG8ghlZHnhARXumSJPibwnW8ELfU9u8a45BNl33YIy-6GPvHvhZGiqXgn/exec",{method:"POST",body:JSON.stringify(empleado)})
+    .then(r => r.json())
+    .then(function(respuesta){
+        if(!respuesta.ok){
+            alert(respuesta.mensaje);
+            return;
+        }
+        cerrarModalEmpleado();
+        listaEmpleados = [];
+        cargarEmpleados();
+    })
+    .catch(function(error){
+        console.error(error);
+    });
 }
 function limpiarFormularioEmpleado(){
     document.getElementById("txtLegajo").value = "";
