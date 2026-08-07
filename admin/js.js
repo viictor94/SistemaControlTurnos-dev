@@ -248,6 +248,28 @@ function cargarEmpleados(){
     });
 }
 
+function cargarTurnos(){
+    fetch(URL_API + "?accion=turnos")
+        .then(r => r.json())
+        .then(function(turnos){
+            const combo =
+                document.getElementById("txtTurno");
+            combo.innerHTML = "";
+            turnos.forEach(function(turno){
+                combo.innerHTML += `
+                    <option value="${turno}">
+                        ${turno}
+                    </option>
+                `;
+            });
+            if(empleadoSeleccionado){
+                combo.value = empleadoSeleccionado.turno;
+            }
+        })
+        .catch(function(error){
+            console.error(error);
+        });
+}
 
 function renderizarEmpleados(lista){
     const tabla =
@@ -302,7 +324,6 @@ function filtrarEmpleados(){
 }
 
 let modoEmpleado = "editar";
-
 function editarEmpleado(dni){
     empleadoSeleccionado = listaEmpleados.find(function(e){
         return e.dni == dni;
@@ -339,19 +360,21 @@ function abrirModalEmpleado(){
         empleadoSeleccionado.nombre;
     document.getElementById("txtSucursal").value =
         empleadoSeleccionado.sucursal;
-    document.getElementById("txtTurno").value =
-        empleadoSeleccionado.turno;
     document.getElementById("txtEstado").value =
         empleadoSeleccionado.estado;
     // El legajo siempre es automático
     txtLegajo.readOnly = true;
-    // El DNI solo puede editarse al crear un empleado
+    // El DNI solo puede editarse al crear
     txtDni.readOnly = (modoEmpleado != "nuevo");
     document.getElementById("tituloModalEmpleado")
         .textContent =
         modoEmpleado == "nuevo"
         ? "Nuevo empleado"
         : "Editar empleado";
+    // Cargar los combos
+    cargarTurnos();
+    // (Más adelante agregaremos también:)
+    // cargarSucursales();
     document.getElementById("modalEmpleado")
         .style.display = "flex";
 }
