@@ -560,3 +560,17 @@ body{
 .tabla-empleados tbody tr:hover{
     background:#f9fbf9;
 }
+
+.btnEditarEmpleado{
+    width:36px;
+    height:36px;
+    border:none;
+    border-radius:8px;
+    background:#f3f4f6;
+    cursor:pointer;
+    transition:.2s;
+}
+.btnEditarEmpleado:hover{
+    background:#2e7d32;
+    color:#fff;
+}
