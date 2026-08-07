@@ -303,7 +303,6 @@ function filtrarEmpleados(){
     renderizarEmpleados(resultado);
 }
 
-let empleadoSeleccionado = null;
 let modoEmpleado = "editar";
 
 function editarEmpleado(dni){
