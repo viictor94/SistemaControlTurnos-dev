@@ -166,7 +166,7 @@
                         <h2>Empleados</h2>
                         <div>
                             <input type="text" id="buscarEmpleado" placeholder="Buscar empleado...">
-                            <button id="btnNuevoEmpleado">
+                            <button id="btnNuevoEmpleado" type="button">
                                 <i class="fa-solid fa-plus"></i>
                                 Nuevo
                             </button>
@@ -198,7 +198,6 @@
         <i id="notificacionIcono" class="fa-solid fa-circle-check"></i>
         <span id="notificacionTexto"></span>
     </div>
-
     <div id="overlayCarga" class="overlay-carga">
         <div class="cargando">
             <i class="fa-solid fa-rotate-right"></i>
@@ -206,104 +205,58 @@
         </div>
     </div>
     <div id="modalEmpleado" class="modal">
-
     <div class="modal-contenido">
-
         <div class="modal-header">
-
             <h2 id="tituloModalEmpleado">
-
                 Editar empleado
-
             </h2>
-
-            <button id="btnCerrarModal">
-
+            <button id="btnCerrarModal" type="button">
                 <i class="fa-solid fa-xmark"></i>
-
             </button>
-
         </div>
-
         <div class="modal-body">
-
             <div class="campo">
-
-                <label>Legajo</label>
-
-                <input type="text" id="txtLegajo">
-
+               <label>Legajo</label>
+                <input type="text" id="txtLegajo" readonly>
             </div>
-
             <div class="campo">
-
                 <label>DNI</label>
-
-                <input type="text" id="txtDni">
-
+                <input type="text" id="txtDni" readonly>
             </div>
-
             <div class="campo">
-
                 <label>Apellido</label>
-
                 <input type="text" id="txtApellido">
-
             </div>
-
             <div class="campo">
-
                 <label>Nombre</label>
-
                 <input type="text" id="txtNombre">
-
             </div>
-
             <div class="campo">
-
                 <label>Sucursal</label>
-
                 <input type="text" id="txtSucursal">
-
             </div>
-
             <div class="campo">
-
                 <label>Turno</label>
-
                 <input type="text" id="txtTurno">
-
             </div>
-
             <div class="campo">
-
                 <label>Estado</label>
-
                 <select id="txtEstado">
-
                     <option value="ACTIVO">ACTIVO</option>
-
                     <option value="BAJA">BAJA</option>
-
                 </select>
-
             </div>
-
         </div>
-
         <div class="modal-footer">
-            <button id="btnCancelarEmpleado">
-                Cancelar
-            </button>
-            <button id="btnGuardarEmpleado">
-                Guardar
-            </button>
-        </div>
-    </div>
+           <button id="btnCancelarEmpleado" type="button">
+               Cancelar
+           </button>
+           <button id="btnGuardarEmpleado" type="button">
+               Guardar
+           </button>
+       </div>
+   </div>
 </div>
-    
-
     <script src="js.js"></script>
 </body>
-
 </html>
