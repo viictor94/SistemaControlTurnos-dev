@@ -5,14 +5,13 @@ window.addEventListener("load", function(){
     cargarDashboard();
 });
 const URL_API ="https://script.google.com/macros/s/AKfycbxCdDy-UJ5gG8ghlZHnhARXumSJPibwnW8ELfU9u8a45BNl33YIy-6GPvHvhZGiqXgn/exec";
-
 function cargarDashboard(){
     document
         .getElementById("overlayCarga")
         .classList
         .add("mostrar");
     const inicio = performance.now();
-    fetch(URL_API + "?accion=dashboard")
+    fetch(URL_API+"?accion=dashboard")
     .then(r => r.json())
     .then(function(datos){
         cargarKPIs(datos);
