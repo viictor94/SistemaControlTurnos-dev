@@ -4,6 +4,7 @@
 window.addEventListener("load", function(){
     cargarDashboard();
 });
+const URL_API ="https://script.google.com/macros/s/AKfycbxCdDy-UJ5gG8ghlZHnhARXumSJPibwnW8ELfU9u8a45BNl33YIy-6GPvHvhZGiqXgn/exec";
 
 function cargarDashboard(){
     document
@@ -11,9 +12,7 @@ function cargarDashboard(){
         .classList
         .add("mostrar");
     const inicio = performance.now();
-    fetch(
-        "https://script.google.com/macros/s/AKfycbxCdDy-UJ5gG8ghlZHnhARXumSJPibwnW8ELfU9u8a45BNl33YIy-6GPvHvhZGiqXgn/exec?accion=dashboard"
-    )
+    fetch(URL_API + "?accion=dashboard")
     .then(r => r.json())
     .then(function(datos){
         cargarKPIs(datos);
@@ -239,7 +238,7 @@ function mostrarDashboard(e){
 let empleadoSeleccionado = null;
 let listaEmpleados = [];
 function cargarEmpleados(){
-    fetch("https://script.google.com/macros/s/AKfycbxCdDy-UJ5gG8ghlZHnhARXumSJPibwnW8ELfU9u8a45BNl33YIy-6GPvHvhZGiqXgn/exec?accion=empleados")
+    fetch(URL_API + "?accion=empleados")
     .then(r => r.json())
     .then(function(empleados){
         listaEmpleados = empleados;
@@ -386,42 +385,57 @@ function guardarEmpleado(){
         alert("Complete los datos obligatorios.");
         return;
     }
-    const empleado = {
-        accion:
-           modoEmpleado == "nuevo"
-           ? "guardarEmpleado"
-           : "actualizarEmpleado",
-        legajo:
-            document.getElementById("txtLegajo").value,
-        dni:
-            document.getElementById("txtDni").value,
-        apellido:
-            document.getElementById("txtApellido").value,
-        nombre:
-            document.getElementById("txtNombre").value,
-        sucursal:
-            document.getElementById("txtSucursal").value,
-        turno:
-            document.getElementById("txtTurno").value,
-        estado:
+    const accion =
+        modoEmpleado == "nuevo"
+        ? "guardarEmpleado"
+        : "actualizarEmpleado";
+    const url =
+        URL_API +
+        "?accion=" + accion +
+        "&legajo=" +
+        encodeURIComponent(
+            document.getElementById("txtLegajo").value
+        ) +
+        "&dni=" +
+        encodeURIComponent(
+            document.getElementById("txtDni").value
+        ) +
+        "&apellido=" +
+        encodeURIComponent(
+            document.getElementById("txtApellido").value
+        ) +
+        "&nombre=" +
+        encodeURIComponent(
+            document.getElementById("txtNombre").value
+        ) +
+        "&sucursal=" +
+        encodeURIComponent(
+            document.getElementById("txtSucursal").value
+        ) +
+        "&turno=" +
+        encodeURIComponent(
+            document.getElementById("txtTurno").value
+        ) +
+        "&estado=" +
+        encodeURIComponent(
             document.getElementById("txtEstado").value
-    };
-
-   fetch("https://script.google.com/macros/s/AKfycbxCdDy-UJ5gG8ghlZHnhARXumSJPibwnW8ELfU9u8a45BNl33YIy-6GPvHvhZGiqXgn/exec",{method:"POST",body:JSON.stringify(empleado)})
-    .then(r => r.json())
-    .then(function(respuesta){
-        if(!respuesta.ok){
-            alert(respuesta.mensaje);
-            return;
-        }
-        cerrarModalEmpleado();
-        listaEmpleados = [];
-        cargarEmpleados();
-    })
-    .catch(function(error){
-        console.error(error);
-    });
+        );
+    fetch(url)
+        .then(r => r.json())
+        .then(function(respuesta){
+            if(!respuesta.ok){
+                alert(respuesta.mensaje);
+                return;
+            }
+            cerrarModalEmpleado();
+            listaEmpleados = [];
+            cargarEmpleados();
+        })
+        .catch(function(error){
+            console.error(error);
+        });
 }
+
 function limpiarFormularioEmpleado(){
     document.getElementById("txtLegajo").value = "";
     document.getElementById("txtDni").value = "";
@@ -431,28 +445,24 @@ function limpiarFormularioEmpleado(){
     document.getElementById("txtTurno").value = "";
     document.getElementById("txtEstado").value = "ACTIVO";
 }
-
 document
     .getElementById("btnNuevoEmpleado")
     .addEventListener(
         "click",
         nuevoEmpleado
     );
-
 document
     .getElementById("btnGuardarEmpleado")
     .addEventListener(
         "click",
         guardarEmpleado
     );
-
 document
     .getElementById("btnCerrarModal")
     .addEventListener(
         "click",
         cerrarModalEmpleado
     );
-
 document
     .getElementById("btnCancelarEmpleado")
     .addEventListener(
