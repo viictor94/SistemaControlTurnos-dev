@@ -303,6 +303,9 @@ function filtrarEmpleados(){
     renderizarEmpleados(resultado);
 }
 
+let empleadoSeleccionado = null;
+let modoEmpleado = "editar";
+
 function editarEmpleado(dni){
     empleadoSeleccionado = listaEmpleados.find(function(e){
         return e.dni == dni;
@@ -310,9 +313,77 @@ function editarEmpleado(dni){
     if(!empleadoSeleccionado){
         return;
     }
+    modoEmpleado = "editar";
     abrirModalEmpleado();
 }
-
+function nuevoEmpleado(){
+    modoEmpleado = "nuevo";
+    empleadoSeleccionado = {
+        legajo:"",
+        dni:"",
+        apellido:"",
+        nombre:"",
+        sucursal:"",
+        turno:"",
+        estado:"ACTIVO"
+    };
+    abrirModalEmpleado();
+}
 function abrirModalEmpleado(){
-    console.log(empleadoSeleccionado);
+    document.getElementById("txtLegajo").value =
+       empleadoSeleccionado.legajo;
+    document.getElementById("txtDni").value =
+        empleadoSeleccionado.dni;
+    document.getElementById("txtApellido").value =
+        empleadoSeleccionado.apellido;
+    document.getElementById("txtNombre").value =
+        empleadoSeleccionado.nombre;
+    document.getElementById("txtSucursal").value =
+        empleadoSeleccionado.sucursal;
+    document.getElementById("txtTurno").value =
+        empleadoSeleccionado.turno;
+    document.getElementById("txtEstado").value =
+        empleadoSeleccionado.estado;
+    document.getElementById("tituloModalEmpleado")
+        .textContent =
+       modoEmpleado == "nuevo"
+        ? "Nuevo empleado"
+        : "Editar empleado";
+    document.getElementById("modalEmpleado")
+        .style.display = "flex";
+}
+function cerrarModalEmpleado(){
+    document.getElementById("modalEmpleado")
+        .style.display = "none";
+}
+function validarFormularioEmpleado(){
+    if(
+       document.getElementById("txtApellido")
+        .value.trim() == ""
+    ){
+        return false;
+    }
+    if(
+        document.getElementById("txtNombre")
+        .value.trim() == ""
+    ){
+        return false;
+    }
+    return true;
+}
+function guardarEmpleado(){
+    if(!validarFormularioEmpleado()){
+        alert("Complete los datos obligatorios.");
+        return;
+    }
+    console.log("Guardar empleado");
+}
+function limpiarFormularioEmpleado(){
+    document.getElementById("txtLegajo").value = "";
+    document.getElementById("txtDni").value = "";
+    document.getElementById("txtApellido").value = "";
+    document.getElementById("txtNombre").value = "";
+    document.getElementById("txtSucursal").value = "";
+    document.getElementById("txtTurno").value = "";
+    document.getElementById("txtEstado").value = "ACTIVO";
 }
