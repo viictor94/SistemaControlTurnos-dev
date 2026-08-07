@@ -236,6 +236,7 @@ function mostrarDashboard(e){
         .classList.remove("activo");
   }
 
+let empleadoSeleccionado = null;
 let listaEmpleados = [];
 function cargarEmpleados(){
     fetch("https://script.google.com/macros/s/AKfycbxCdDy-UJ5gG8ghlZHnhARXumSJPibwnW8ELfU9u8a45BNl33YIy-6GPvHvhZGiqXgn/exec?accion=empleados")
@@ -303,11 +304,15 @@ function filtrarEmpleados(){
 }
 
 function editarEmpleado(dni){
-    const empleado = listaEmpleados.find(function(e){
+    empleadoSeleccionado = listaEmpleados.find(function(e){
         return e.dni == dni;
     });
-    if(!empleado){
+    if(!empleadoSeleccionado){
         return;
     }
-    console.log(empleado);
+    abrirModalEmpleado();
+}
+
+function abrirModalEmpleado(){
+    console.log(empleadoSeleccionado);
 }
