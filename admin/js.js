@@ -265,7 +265,12 @@ function renderizarEmpleados(lista){
                 <td>${e.turno}</td>
                 <td>${e.estado}</td>
                 <td>
+                    <button
+                    class="btnEditarEmpleado"
+                    onclick="editarEmpleado('${e.dni}')"
+                  >
                     <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
                 </td>
             </tr>
         `;
