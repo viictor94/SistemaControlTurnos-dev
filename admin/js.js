@@ -301,3 +301,13 @@ function filtrarEmpleados(){
     });
     renderizarEmpleados(resultado);
 }
+
+function editarEmpleado(dni){
+    const empleado = listaEmpleados.find(function(e){
+        return e.dni == dni;
+    });
+    if(!empleado){
+        return;
+    }
+    console.log(empleado);
+}
