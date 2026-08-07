@@ -574,3 +574,98 @@ body{
     background:#2e7d32;
     color:#fff;
 }
+
+
+/*=========================================
+  MODAL EMPLEADOS
+=========================================*/
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+.modal-contenido{
+    width:650px;
+    max-width:95%;
+    background:#fff;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 20px 40px rgba(0,0,0,.25);
+}
+.modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 24px;
+    border-bottom:1px solid #ececec;
+}
+.modal-header h2{
+    margin:0;
+    font-size:20px;
+}
+.modal-header button{
+    border:none;
+    background:none;
+    cursor:pointer;
+    font-size:22px;
+}
+.modal-body{
+    padding:24px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+.campo{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+.campo label{
+    font-size:13px;
+    font-weight:600;
+    color:#555;
+}
+.campo input,
+.campo select{
+    padding:11px 14px;
+    border:1px solid #d9d9d9;
+    border-radius:8px;
+    font-size:14px;
+    outline:none;
+}
+.campo input:focus,
+.campo select:focus{
+    border-color:#2e7d32;
+}
+.modal-footer{
+    display:flex;
+    justify-content:flex-end;
+    gap:12px;
+    padding:20px 24px;
+    border-top:1px solid #ececec;
+}
+#btnCancelarEmpleado{
+    background:#e5e7eb;
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    cursor:pointer;
+}
+#btnGuardarEmpleado{
+    background:#2e7d32;
+    color:#fff;
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    cursor:pointer;
+}
+#btnGuardarEmpleado:hover{
+    background:#256728;
+}
+#btnCerrarModal:hover{
+    color:#c62828;
+}
