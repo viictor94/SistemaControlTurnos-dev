@@ -386,3 +386,31 @@ function limpiarFormularioEmpleado(){
     document.getElementById("txtTurno").value = "";
     document.getElementById("txtEstado").value = "ACTIVO";
 }
+
+document
+    .getElementById("btnNuevoEmpleado")
+    .addEventListener(
+        "click",
+        nuevoEmpleado
+    );
+
+document
+    .getElementById("btnGuardarEmpleado")
+    .addEventListener(
+        "click",
+        guardarEmpleado
+    );
+
+document
+    .getElementById("btnCerrarModal")
+    .addEventListener(
+        "click",
+        cerrarModalEmpleado
+    );
+
+document
+    .getElementById("btnCancelarEmpleado")
+    .addEventListener(
+        "click",
+        cerrarModalEmpleado
+    );
