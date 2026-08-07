@@ -329,10 +329,12 @@ function nuevoEmpleado(){
     abrirModalEmpleado();
 }
 function abrirModalEmpleado(){
-    document.getElementById("txtLegajo").value =
-       empleadoSeleccionado.legajo;
-    document.getElementById("txtDni").value =
-        empleadoSeleccionado.dni;
+    const txtLegajo =
+        document.getElementById("txtLegajo");
+    const txtDni =
+        document.getElementById("txtDni");
+    txtLegajo.value = empleadoSeleccionado.legajo;
+    txtDni.value = empleadoSeleccionado.dni;
     document.getElementById("txtApellido").value =
         empleadoSeleccionado.apellido;
     document.getElementById("txtNombre").value =
@@ -343,18 +345,27 @@ function abrirModalEmpleado(){
         empleadoSeleccionado.turno;
     document.getElementById("txtEstado").value =
         empleadoSeleccionado.estado;
+    if(modoEmpleado == "nuevo"){
+       txtLegajo.readOnly = false;
+        txtDni.readOnly = false;
+    }else{
+        txtLegajo.readOnly = true;
+        txtDni.readOnly = true;
+    }
     document.getElementById("tituloModalEmpleado")
         .textContent =
-       modoEmpleado == "nuevo"
+        modoEmpleado == "nuevo"
         ? "Nuevo empleado"
         : "Editar empleado";
     document.getElementById("modalEmpleado")
         .style.display = "flex";
 }
+
 function cerrarModalEmpleado(){
     document.getElementById("modalEmpleado")
         .style.display = "none";
 }
+
 function validarFormularioEmpleado(){
     if(
        document.getElementById("txtApellido")
