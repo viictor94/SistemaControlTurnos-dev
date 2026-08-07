@@ -316,7 +316,7 @@ function editarEmpleado(dni){
 function nuevoEmpleado(){
     modoEmpleado = "nuevo";
     empleadoSeleccionado = {
-        legajo:"",
+        legajo:"(Automático)",
         dni:"",
         apellido:"",
         nombre:"",
@@ -343,13 +343,10 @@ function abrirModalEmpleado(){
         empleadoSeleccionado.turno;
     document.getElementById("txtEstado").value =
         empleadoSeleccionado.estado;
-    if(modoEmpleado == "nuevo"){
-       txtLegajo.readOnly = false;
-        txtDni.readOnly = false;
-    }else{
-        txtLegajo.readOnly = true;
-        txtDni.readOnly = true;
-    }
+    // El legajo siempre es automático
+    txtLegajo.readOnly = true;
+    // El DNI solo puede editarse al crear un empleado
+    txtDni.readOnly = (modoEmpleado != "nuevo");
     document.getElementById("tituloModalEmpleado")
         .textContent =
         modoEmpleado == "nuevo"
