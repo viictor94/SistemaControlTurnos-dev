@@ -249,32 +249,91 @@ function cargarEmpleados(){
 }
 
 function cargarCombo(accion, idSelect, valorSeleccionado){
-    fetch(URL_API + "?accion=" + accion)
-        .then(r => r.json())
-        .then(function(lista){
-            const combo =
-               document.getElementById(idSelect);
-            combo.innerHTML = "";
-            lista.forEach(function(item){
-                const valor =
-                    typeof item == "string"
-                    ? item
+    const combo =
+        document.getElementById(idSelect);
+    if(!combo){
+        console.error(
+            "No existe el elemento: " + idSelect
+        );
+        return;
+    }
+    combo.innerHTML = `
+        <option value="">
+            -- Seleccione una opción --
+        </option>
+    `;
+    fetch(
+        URL_API +
+        "?accion=" +
+        encodeURIComponent(accion)
+    )
+    .then(function(r){
+        if(!r.ok){
+            throw new Error(
+                "Error HTTP: " + r.status
+            );
+        }
+        return r.json();
+    })
+    .then(function(lista){
+        console.log(
+            "Datos recibidos para " +
+            accion + ":",
+            lista
+        );
+        if(!Array.isArray(lista)){
+            console.error(
+                "La respuesta no es una lista:",
+                lista
+           );
+            return;
+        }
+        lista.forEach(function(item){
+            let valor;
+            let texto;
+            // TURNOS
+            if(typeof item === "string"){
+                valor = item;
+                texto = item;
+            }
+            // SUCURSALES
+            else if(item && typeof item === "object"){
+                valor =
+                    item.id != null
+                    ? item.id
                     : item.nombre;
+                texto =
+                    item.nombre != null
+                    ? item.nombre
+                    : item.id;
+            }
+            if(
+                valor !== undefined &&
+                valor !== null
+            ){
                 combo.innerHTML += `
                     <option value="${valor}">
-                        ${valor}
+                        ${texto}
                     </option>
                 `;
-            });
-            if(valorSeleccionado){
-                combo.value = valorSeleccionado;
             }
-        })
-        .catch(function(error){
-            console.error(error);
         });
+        if(
+            valorSeleccionado !== undefined &&
+            valorSeleccionado !== null &&
+            valorSeleccionado !== ""
+        ){
+            combo.value =
+                String(valorSeleccionado);
+        }
+    })
+    .catch(function(error){
+        console.error(
+            "Error cargando " + accion + ":",
+            error
+        );
+    });
 }
-
 
 function renderizarEmpleados(lista){
     const tabla =
@@ -352,37 +411,91 @@ function nuevoEmpleado(){
     };
     abrirModalEmpleado();
 }
-function abrirModalEmpleado(){
-    const txtLegajo =
-        document.getElementById("txtLegajo");
-    const txtDni =
-        document.getElementById("txtDni");
-    txtLegajo.value = empleadoSeleccionado.legajo;
-    txtDni.value = empleadoSeleccionado.dni;
-    document.getElementById("txtApellido").value =
-        empleadoSeleccionado.apellido;
-    document.getElementById("txtNombre").value =
-        empleadoSeleccionado.nombre;
-    document.getElementById("txtSucursal").value =
-        empleadoSeleccionado.sucursal;
-    document.getElementById("txtEstado").value =
-        empleadoSeleccionado.estado;
-    // El legajo siempre es automático
-    txtLegajo.readOnly = true;
-    // El DNI solo puede editarse al crear
-    txtDni.readOnly = (modoEmpleado != "nuevo");
-    document.getElementById("tituloModalEmpleado")
-        .textContent =
-        modoEmpleado == "nuevo"
-        ? "Nuevo empleado"
-        : "Editar empleado";
-    // Cargar los combos
-    cargarCombo("turnos","txtTurno", empleadoSeleccionado.turno
-);
-    // (Más adelante agregaremos también:)
-    // cargarSucursales();
-    document.getElementById("modalEmpleado")
-        .style.display = "flex";
+function cargarCombo(accion, idSelect, valorSeleccionado){
+    const combo =
+        document.getElementById(idSelect);
+    if(!combo){
+        console.error(
+            "No existe el elemento: " + idSelect
+        );
+        return;
+    }
+    combo.innerHTML = `
+        <option value="">
+            -- Seleccione una opción --
+        </option>
+    `;
+    fetch(
+        URL_API +
+        "?accion=" +
+        encodeURIComponent(accion)
+    )
+    .then(function(r){
+        if(!r.ok){
+            throw new Error(
+                "Error HTTP: " + r.status
+            );
+        }
+        return r.json();
+    })
+    .then(function(lista){
+        console.log(
+            "Datos recibidos para " +
+            accion + ":",
+            lista
+        );
+        if(!Array.isArray(lista)){
+            console.error(
+                "La respuesta no es una lista:",
+                lista
+            );
+            return;
+        }
+        lista.forEach(function(item){
+            let valor;
+            let texto;
+            // TURNOS
+            if(typeof item === "string"){
+                valor = item;
+                texto = item;
+            }
+            // SUCURSALES
+            else if(item && typeof item === "object"){
+                valor =
+                    item.id != null
+                    ? item.id
+                    : item.nombre;
+                texto =
+                    item.nombre != null
+                    ? item.nombre
+                    : item.id;
+            }
+            if(
+                valor !== undefined &&
+                valor !== null
+            ){
+                combo.innerHTML += `
+                    <option value="${valor}">
+                        ${texto}
+                    </option>
+                `;
+            }
+        });
+        if(
+            valorSeleccionado !== undefined &&
+            valorSeleccionado !== null &&
+            valorSeleccionado !== ""
+        ){
+            combo.value =
+                String(valorSeleccionado);
+        }
+    })
+    .catch(function(error){
+        console.error(
+            "Error cargando " + accion + ":",
+            error
+        );
+    });
 }
 
 function cerrarModalEmpleado(){
