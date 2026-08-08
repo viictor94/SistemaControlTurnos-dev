@@ -248,28 +248,33 @@ function cargarEmpleados(){
     });
 }
 
-function cargarTurnos(){
-    fetch(URL_API + "?accion=turnos")
+function cargarCombo(accion, idSelect, valorSeleccionado){
+    fetch(URL_API + "?accion=" + accion)
         .then(r => r.json())
-        .then(function(turnos){
+        .then(function(lista){
             const combo =
-                document.getElementById("txtTurno");
+               document.getElementById(idSelect);
             combo.innerHTML = "";
-            turnos.forEach(function(turno){
+            lista.forEach(function(item){
+                const valor =
+                    typeof item == "string"
+                    ? item
+                    : item.nombre;
                 combo.innerHTML += `
-                    <option value="${turno}">
-                        ${turno}
+                    <option value="${valor}">
+                        ${valor}
                     </option>
                 `;
             });
-            if(empleadoSeleccionado){
-                combo.value = empleadoSeleccionado.turno;
+            if(valorSeleccionado){
+                combo.value = valorSeleccionado;
             }
         })
         .catch(function(error){
             console.error(error);
         });
 }
+
 
 function renderizarEmpleados(lista){
     const tabla =
@@ -372,7 +377,8 @@ function abrirModalEmpleado(){
         ? "Nuevo empleado"
         : "Editar empleado";
     // Cargar los combos
-    cargarTurnos();
+    cargarCombo("turnos","txtTurno", empleadoSeleccionado.turno
+);
     // (Más adelante agregaremos también:)
     // cargarSucursales();
     document.getElementById("modalEmpleado")
