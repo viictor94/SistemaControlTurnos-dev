@@ -413,15 +413,22 @@ function cargarCombo(accion, idSelect, valorSeleccionado){
                 valor = item;
                 texto = item;
             }else if(item && typeof item === "object"){
-                valor =
-                    item.id != null
-                    ? item.id
-                    : item.nombre;
-                texto =
-                    item.nombre != null
-                    ? item.nombre
-                    : item.id;
-            }
+                  valor =
+                      item.id != null
+                      ? item.id
+                      : item.nombre;            
+                  if(accion == "sucursales"){
+                        texto =
+                        item.id +
+                         " - " +
+                        item.nombre;
+                   }else{
+                        texto =
+                         item.nombre != null
+                         ? item.nombre
+                         : item.id;
+                }
+              }
             if(
                 valor !== undefined &&
                 valor !== null
