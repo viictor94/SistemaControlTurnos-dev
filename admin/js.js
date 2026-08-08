@@ -247,93 +247,6 @@ function cargarEmpleados(){
     });
 }
 
-function cargarCombo(accion, idSelect, valorSeleccionado){
-    const combo =
-        document.getElementById(idSelect);
-    if(!combo){
-        console.error(
-            "No existe el elemento: " + idSelect
-        );
-        return;
-    }
-    combo.innerHTML = `
-        <option value="">
-            -- Seleccione una opción --
-        </option>
-    `;
-    fetch(
-        URL_API +
-        "?accion=" +
-        encodeURIComponent(accion)
-    )
-    .then(function(r){
-        if(!r.ok){
-            throw new Error(
-                "Error HTTP: " + r.status
-            );
-        }
-        return r.json();
-    })
-    .then(function(lista){
-        console.log(
-            "Datos recibidos para " +
-            accion + ":",
-            lista
-        );
-        if(!Array.isArray(lista)){
-            console.error(
-                "La respuesta no es una lista:",
-                lista
-           );
-            return;
-        }
-        lista.forEach(function(item){
-            let valor;
-            let texto;
-            // TURNOS
-            if(typeof item === "string"){
-                valor = item;
-                texto = item;
-            }
-            // SUCURSALES
-            else if(item && typeof item === "object"){
-                valor =
-                    item.id != null
-                    ? item.id
-                    : item.nombre;
-                texto =
-                    item.nombre != null
-                    ? item.nombre
-                    : item.id;
-            }
-            if(
-                valor !== undefined &&
-                valor !== null
-            ){
-                combo.innerHTML += `
-                    <option value="${valor}">
-                        ${texto}
-                    </option>
-                `;
-            }
-        });
-        if(
-            valorSeleccionado !== undefined &&
-            valorSeleccionado !== null &&
-            valorSeleccionado !== ""
-        ){
-            combo.value =
-                String(valorSeleccionado);
-        }
-    })
-    .catch(function(error){
-        console.error(
-            "Error cargando " + accion + ":",
-            error
-        );
-    });
-}
-
 function renderizarEmpleados(lista){
     const tabla =
         document.getElementById("tablaEmpleados");
@@ -410,6 +323,48 @@ function nuevoEmpleado(){
     };
     abrirModalEmpleado();
 }
+
+function abrirModalEmpleado(){
+    const txtLegajo =
+        document.getElementById("txtLegajo");
+    const txtDni =
+        document.getElementById("txtDni");
+    txtLegajo.value =
+        empleadoSeleccionado.legajo;
+    txtDni.value =
+        empleadoSeleccionado.dni;
+    document.getElementById("txtApellido").value =
+        empleadoSeleccionado.apellido;
+    document.getElementById("txtNombre").value =
+        empleadoSeleccionado.nombre;
+    document.getElementById("txtEstado").value =
+        empleadoSeleccionado.estado;
+    // El legajo siempre es automático
+    txtLegajo.readOnly = true;
+    // El DNI solo puede modificarse al crear
+    txtDni.readOnly =
+         modoEmpleado != "nuevo";
+    document.getElementById("tituloModalEmpleado")
+        .textContent =
+        modoEmpleado == "nuevo"
+        ? "Nuevo empleado"
+        : "Editar empleado";
+    // Cargar sucursales
+    cargarCombo(
+        "sucursales",
+        "txtSucursal",
+        empleadoSeleccionado.sucursal
+    );
+    // Cargar turnos
+    cargarCombo(
+        "turnos",
+        "txtTurno",
+        empleadoSeleccionado.turno
+    );
+    document.getElementById("modalEmpleado")
+        .style.display = "flex";
+}
+
 function cargarCombo(accion, idSelect, valorSeleccionado){
     const combo =
         document.getElementById(idSelect);
@@ -439,10 +394,10 @@ function cargarCombo(accion, idSelect, valorSeleccionado){
     })
     .then(function(lista){
         console.log(
-            "Datos recibidos para " +
-            accion + ":",
+            "Datos recibidos para " + accion + ":",
             lista
         );
+
         if(!Array.isArray(lista)){
             console.error(
                 "La respuesta no es una lista:",
@@ -450,16 +405,14 @@ function cargarCombo(accion, idSelect, valorSeleccionado){
             );
             return;
         }
+
         lista.forEach(function(item){
             let valor;
             let texto;
-            // TURNOS
             if(typeof item === "string"){
                 valor = item;
                 texto = item;
-            }
-            // SUCURSALES
-            else if(item && typeof item === "object"){
+            }else if(item && typeof item === "object"){
                 valor =
                     item.id != null
                     ? item.id
