@@ -310,10 +310,11 @@ function editarEmpleado(dni){
     modoEmpleado = "editar";
     abrirModalEmpleado();
 }
+
 function nuevoEmpleado(){
     modoEmpleado = "nuevo";
     empleadoSeleccionado = {
-        legajo:"(Automático)",
+        legajo:"",
         dni:"",
         apellido:"",
         nombre:"",
@@ -322,6 +323,39 @@ function nuevoEmpleado(){
         estado:"ACTIVO"
     };
     abrirModalEmpleado();
+    // Obtener el próximo legajo desde el backend
+    fetch(URL_API + "?accion=siguienteLegajo")
+        .then(function(r){
+            if(!r.ok){
+                throw new Error(
+                    "Error HTTP: " + r.status
+                );
+            }
+            return r.json();
+        })
+        .then(function(respuesta){
+            if(!respuesta.ok){
+                console.error(
+                    "No se pudo obtener el siguiente legajo:",
+                    respuesta.mensaje
+                );
+                return;
+            }
+            empleadoSeleccionado.legajo =
+                respuesta.legajo;
+            document
+                .getElementById("txtLegajo")
+                .value = respuesta.legajo;
+        })
+        .catch(function(error){
+            console.error(
+                "Error obteniendo siguiente legajo:",
+                error
+            );
+            document
+                .getElementById("txtLegajo")
+                .value = "Error";
+        });
 }
 
 function abrirModalEmpleado(){
