@@ -608,6 +608,10 @@ function guardarEmpleado(){
                 .getElementById("overlayCarga")
                 .classList
                 .remove("mostrar");
+            document.getElementById("textoOverlay").textContent =
+            modoEmpleado == "nuevo"
+            ? "Guardando empleado..."
+            : "Actualizando empleado...";
         });
 }
 
