@@ -236,15 +236,51 @@ function mostrarDashboard(e){
 let empleadoSeleccionado = null;
 let listaEmpleados = [];
 function cargarEmpleados(){
+    const boton = document.getElementById(
+        "btnActualizarEmpleados"
+    );
+    if(boton){
+        boton.disabled = true;
+        boton.innerHTML = `
+            <i class="fa-solid fa-spinner fa-spin"></i>
+            Actualizando...
+        `;
+    }
     fetch(URL_API + "?accion=empleados")
-    .then(r => r.json())
-    .then(function(empleados){
-        listaEmpleados = empleados;
-        renderizarEmpleados(listaEmpleados);
-    })
-    .catch(function(error){
-        console.error(error);
-    });
+        .then(function(r){
+            if(!r.ok){
+                throw new Error(
+                    "Error HTTP: " + r.status
+                );
+            }
+            return r.json();
+        })
+        .then(function(empleados){
+            listaEmpleados = empleados;
+            renderizarEmpleados(
+               listaEmpleados
+            );
+            mostrarNotificacion(
+                "ok",
+                "Empleados actualizados."
+            );
+        })
+        .catch(function(error){
+           console.error(error);
+            mostrarNotificacion(
+                "error",
+                "No se pudieron actualizar los empleados."
+            );
+        })
+        .finally(function(){
+            if(boton){
+               boton.disabled = false;
+                boton.innerHTML = `
+                    <i class="fa-solid fa-rotate-right"></i>
+                    Actualizar
+                `;
+            }
+        });
 }
 
 function renderizarEmpleados(lista){
@@ -629,6 +665,12 @@ document
     .addEventListener(
         "click",
         nuevoEmpleado
+    );
+document
+    .getElementById("btnActualizarEmpleados")
+    .addEventListener(
+        "click",
+        cargarEmpleados
     );
 document
     .getElementById("btnGuardarEmpleado")
