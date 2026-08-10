@@ -432,6 +432,15 @@ function abrirModalEmpleado(){
         "txtTurno",
         empleadoSeleccionado.turno
     );
+    if(empleadoSeleccionado.turno){
+    cargarHorarioTurno(
+        empleadoSeleccionado.turno
+    );
+    }else{
+    document
+        .getElementById("horarioTurno")
+        .innerHTML = "";
+}
     document.getElementById("modalEmpleado")
         .style.display = "flex";
 }
@@ -526,6 +535,92 @@ function cargarCombo(accion, idSelect, valorSeleccionado){
             error
         );
     });
+}
+
+function cargarHorarioTurno(turno){
+    const contenedor =
+        document.getElementById("horarioTurno");
+    if(!turno){
+        contenedor.innerHTML = "";
+        return;
+    }
+    contenedor.innerHTML = `
+        <span>Consultando horario...</span>
+    `;
+    fetch(
+        URL_API +
+        "?accion=detalleTurno&turno=" +
+        encodeURIComponent(turno)
+    )
+    .then(function(r){
+        if(!r.ok){
+            throw new Error(
+                "Error HTTP: " + r.status
+            );
+        }
+        return r.json();
+    })
+    .then(function(datos){
+        if(!datos.ok){
+            contenedor.innerHTML = `
+                <span>No se encontró el horario.</span>
+            `;
+            return;
+       }
+        let html = "";
+        if(datos.semana){
+            const semana =
+                obtenerTextoHorario(datos.semana);
+            html += `
+                <div>
+                    <strong>Lunes a viernes:</strong>
+                    ${semana}
+                </div>
+            `;
+        }
+        if(datos.sabado){
+            const sabado =
+                obtenerTextoHorario(datos.sabado);
+            html += `
+                <div>
+                    <strong>Sábado:</strong>
+                    ${sabado}
+                </div>
+            `;
+        }
+        contenedor.innerHTML = html;
+    })
+    .catch(function(error){
+        console.error(
+            "Error cargando horario:",
+            error
+        );
+        contenedor.innerHTML = `
+            <span>No se pudo cargar el horario.</span>
+        `;
+    });
+}
+
+function obtenerTextoHorario(horario){
+    if(
+        horario.entrada2 &&
+        horario.salida1
+    ){
+        return (
+            horario.entrada +
+            " - " +
+            horario.salida1 +
+            " / " +
+            horario.entrada2 +
+            " - " +
+            horario.salidaFinal
+        );
+    }
+    return (
+        horario.entrada +
+        " - " +
+        horario.salidaFinal
+    );
 }
 
 function cerrarModalEmpleado(){
@@ -660,6 +755,18 @@ function limpiarFormularioEmpleado(){
     document.getElementById("txtTurno").value = "";
     document.getElementById("txtEstado").value = "ACTIVO";
 }
+
+document
+    .getElementById("txtTurno")
+    .addEventListener(
+        "change",
+        function(){
+            cargarHorarioTurno(
+                this.value
+            );
+        }
+    );
+
 document
     .getElementById("btnNuevoEmpleado")
     .addEventListener(
