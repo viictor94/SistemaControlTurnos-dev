@@ -669,3 +669,17 @@ body{
 #btnCerrarModal:hover{
     color:#c62828;
 }
+
+.horario-turno {
+    margin-top: 6px;
+    padding: 8px 10px;
+    font-size: 12px;
+    line-height: 1.6;
+    color: #667085;
+    background: #f8fafc;
+    border-radius: 6px;
+}
+
+.horario-turno strong {
+    color: #344054;
+}
