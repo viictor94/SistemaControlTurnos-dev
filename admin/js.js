@@ -300,6 +300,7 @@ function filtrarEmpleados(){
 }
 
 let modoEmpleado = "editar";
+let guardandoEmpleado = false;
 function editarEmpleado(dni){
     empleadoSeleccionado = listaEmpleados.find(function(e){
         return e.dni == dni;
@@ -511,11 +512,27 @@ function validarFormularioEmpleado(){
     }
     return true;
 }
+
 function guardarEmpleado(){
+    // Evitar doble envío
+    if(guardandoEmpleado){
+        return;
+    }
     if(!validarFormularioEmpleado()){
         alert("Complete los datos obligatorios.");
         return;
     }
+    guardandoEmpleado = true;
+    const boton = document.getElementById("btnGuardarEmpleado");
+    boton.disabled = true;
+    boton.innerHTML = `
+        <i class="fa-solid fa-spinner fa-spin"></i>
+        Guardando...
+    `;
+    document
+        .getElementById("overlayCarga")
+        .classList
+        .add("mostrar");
     const accion =
         modoEmpleado == "nuevo"
         ? "guardarEmpleado"
@@ -552,18 +569,45 @@ function guardarEmpleado(){
             document.getElementById("txtEstado").value
         );
     fetch(url)
-        .then(r => r.json())
+        .then(function(r){
+            return r.json();
+        })
         .then(function(respuesta){
             if(!respuesta.ok){
-                alert(respuesta.mensaje);
+                mostrarNotificacion(
+                    "error",
+                    respuesta.mensaje || "No se pudo guardar el empleado."
+                );
                 return;
             }
+            mostrarNotificacion(
+                "ok",
+                modoEmpleado == "nuevo"
+                ? "Empleado creado correctamente."
+                : "Empleado actualizado correctamente."
+            );
             cerrarModalEmpleado();
             listaEmpleados = [];
             cargarEmpleados();
         })
         .catch(function(error){
             console.error(error);
+            mostrarNotificacion(
+                "error",
+                "Error de conexión. No se pudo guardar."
+            );
+        })
+        .finally(function(){
+            guardandoEmpleado = false;
+            boton.disabled = false;
+
+            boton.innerHTML = `
+                Guardar
+            `;
+            document
+                .getElementById("overlayCarga")
+                .classList
+                .remove("mostrar");
         });
 }
 
